@@ -46,7 +46,7 @@ import com.amazonaws.AmazonWebServiceClient;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AnonymousAWSCredentials;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.PropertiesCredentials;
 import com.amazonaws.http.conn.ssl.SdkTLSSocketFactory;
@@ -251,7 +251,7 @@ public abstract class AbstractAWSProcessor<ClientType extends AmazonWebServiceCl
             return new BasicAWSCredentials(accessKey, secretKey);
         }
 
-        return new AnonymousAWSCredentials();
+        return new DefaultAWSCredentialsProviderChain().getCredentials();
 
     }
 
